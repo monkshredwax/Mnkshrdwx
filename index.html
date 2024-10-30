@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monk Shred Wax</title>
+    <link rel="icon" href="images/favicon.ico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #202332;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Header with Background Image */
+        header {
+            width: 100%;
+            background-image: url('images/backgroundsnowboard.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #FFFFFF;
+            position: relative;
+            text-align: center;
+        }
+        /* Overlay for Readability */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+        /* Header Content Layer */
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-content h1 {
+            font-size: 3em;
+            font-weight: 700;
+            color: #4fc3f7;
+            margin: 0;
+        }
+
+        /* Social Links Container */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            z-index: 2;
+        }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Info Text Box */
+        .info-text-box {
+            background-color: rgba(30, 31, 40, 0.9);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            color: #e2e8f0;
+            font-size: 1.2em;
+            font-weight: 500;
+            max-width: 500px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Centered Order Now Button */
+        .order-button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .order-button {
+            background-color: #4fc3f7;
+            color: #202332;
+            padding: 20px 40px;
+            font-size: 1.4em;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+        .order-button:hover {
+            background-color: #6bd6ff;
+            transform: scale(1.05);
+        }
+
+        /* Contact Number */
+        .contact-number {
+            font-size: 1.5em;
+            color: #ff6f3c;
+            font-weight: 700;
+            margin-top: 15px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Our Services Section */
+        .info-box {
+            padding: 20px;
+            background-color: #1e1f28;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: #e2e8f0;
+            flex: 1;
+            max-width: 800px; /* Centered and larger */
+            margin-top: 20px;
+            background-size: cover;
+            background-position: center;
+        }
+        .info-box h2 {
+            font-size: 2em;
+            color: #4fc3f7;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .info-item {
+            background-color: rgba(38, 41, 51, 0.9); /* Slightly transparent for visibility over bg */
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-item:hover {
+            background-color: rgba(50, 53, 64, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .info-item h3 {
+            font-size: 1.2em;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+        }
+        .info-item h3::after {
+            content: "▼";
+            font-size: 0.8em;
+            color: #4fc3f7;
+            transition: transform 0.3s ease;
+        }
+        .info-item.active h3::after {
+            transform: rotate(180deg);
+        }
+        .info-item p {
+            display: none;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #e2e8f0;
+        }
+        .info-item.active p {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .order-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+            .info-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header with Background Image and Social Media Links -->
+<header>
+    <div class="header-content">
+        <h1>Monk Shred Wax</h1>
+
+        <!-- Social Media Links Positioned Below Title -->
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/6gZhmwHkVinHEQ3G/?mibextid=LQQJ4d" target="_blank">
+                <img src="images/facebookLogo.png" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/monk_shred/" target="_blank">
+                <img src="images/instaLogo.png" alt="Instagram" class="social-icon">
+            </a>
+        </div>
+
+        <div class="info-text-box">
+            Hand Waxing and Tune-Up is an art, an art that over the years we have perfected and are now sharing it out for the world. We promise precision waxing & sharpening, complete tune-ups, and fast, reliable service.
+        </div>
+
+        <div class="contact-number">
+            Call or Text: (435) 500-8558
+        </div>
+
+        <!-- Centered Order Now Button -->
+        <div class="order-button-container">
+            <a href="https://forms.gle/dWfULYSRPc8rbsCa8" target="_blank" class="order-button">Order Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="main-content">
+    <!-- Our Services Section (Centered) -->
+    <section class="info-box">
+        <h2>Our Services</h2>
+
+        <!-- Hand Waxing Service -->
+        <div class="info-item" onclick="toggleDescription(this)">
+            <h3>Hand Waxing | $25</h3>
+            <p>Get your snowboard or skis ready for peak performance with our expert hand-waxing service. Each board and pair of skis is thoroughly cleaned and hand-waxed for a smooth, even coat that maximizes glide, speed, and control on the slopes. Tailored to current snow conditions, our hand waxing ensures your gear stays fast, responsive, and ready to tackle any terrain.</p>
+        </div>
+
+        <!-- Tune-Up Service -->
+        <div class="info-item" onclick="toggleDescription(this)">
+            <h3>Tune-Up | $60</h3>
+            <p>Revitalize your snowboard or skis with our detailed hand tune-up. Our technicians carefully sharpen edges for precise grip, even on icy terrain, and smooth the base, repairing any nicks or scratches to create a flawless surface. Every detail is adjusted by hand to make your gear feel like new, giving you enhanced control, speed, and confidence on the slopes, no matter the conditions.</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Function to toggle description visibility
+    function toggleDescription(element) {
+        element.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
